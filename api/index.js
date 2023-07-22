@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 // GET endpoint to fetch all users
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
     result: "API còn sống nhé anh em!",
   });
