@@ -12,8 +12,8 @@ app.get("/api", (req, res) => {
   });
 });
 // Load the RSA keys
-const publicKey = fs.readFileSync("./api/public.key", "utf8");
-const privateKey = fs.readFileSync("./api/private.key", "utf8");
+const publicKey = fs.readFileSync("./public.key", "utf8");
+const privateKey = fs.readFileSync("./private.key", "utf8");
 
 // Middleware to encrypt request data
 app.use(express.json());
