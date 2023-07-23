@@ -2,14 +2,14 @@
 const express = require("express");
 const crypto = require("crypto");
 const fs = require("fs");
+const cors = require("cors");
 const app = express();
 const port = 3000;
+app.use(cors({ origin: "*" }));
 
 // GET endpoint to fetch all users
 app.get("/api", (req, res) => {
-  res.json({
-    result: "API còn sống nhé anh em!",
-  });
+  res.json({ plaintext: "API còn sống nhé anh em" });
 });
 // Load the RSA keys
 const publicKey = fs.readFileSync("./public.key", "utf8");
@@ -19,6 +19,8 @@ const privateKey = fs.readFileSync("./private.key", "utf8");
 app.use(express.json());
 function encrypt(req, res, next) {
   plaintext = req.body.plaintext;
+  console.log(plaintext);
+  console.log(typeof plaintext);
   const buffer = Buffer.from(plaintext, "utf8");
   const encrypted = crypto.publicEncrypt(
     { key: publicKey, padding: crypto.constants.RSA_PKCS1_PADDING },
